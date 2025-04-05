@@ -42,16 +42,3 @@ updates:
       - "android"
       - "native"
 
-  # --- Optional: Uncomment and adjust if you have native iOS dependencies ---
-  - package-ecosystem: "cocoapods"
-    directory: "/ios" # Adjust if your Podfile is elsewhere
-    schedule:
-      interval: "weekly"
-    commit-message:
-      prefix: "chore(deps-ios)"
-      include: "scope"
-    labels:
-      - "dependencies"
-      - "ios"
-      - "native"
-
