@@ -1,0 +1,26 @@
+{
+  "@@locale": "en",
+  "helloWorld": "Hello World!",
+  "@helloWorld": {
+    "description": "A simple greeting"
+  },
+  "helloUser": "Hello {userName}",
+  "@helloUser": {
+    "description": "A greeting personalized with the user's name.",
+    "placeholders": {
+      "userName": {
+        "type": "String",
+        "example": "Alice"
+      }
+    }
+  },
+   "remainingEmails": "{count,plural, =0{No emails left} =1{1 email left} other{{count} emails left}}",
+   "@remainingEmails": {
+     "description": "Indicates how many emails are remaining.",
+     "placeholders": {
+       "count": {
+         "type": "int"
+       }
+     }
+   }
+}
