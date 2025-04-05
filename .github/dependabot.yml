@@ -16,3 +16,42 @@ updates:
       prefix: "chore"
       include: "scope"
 
+ # Enable updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/" # Looks for workflows in the .github/workflows directory
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore(deps-actions)"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "github-actions"
+      - "ci"
+
+  # --- Optional: Uncomment and adjust if you have native Android dependencies ---
+  - package-ecosystem: "gradle"
+    directory: "/android" # Adjust if your main build.gradle is elsewhere
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore(deps-android)"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "android"
+      - "native"
+
+  # --- Optional: Uncomment and adjust if you have native iOS dependencies ---
+  - package-ecosystem: "cocoapods"
+    directory: "/ios" # Adjust if your Podfile is elsewhere
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore(deps-ios)"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "ios"
+      - "native"
+
