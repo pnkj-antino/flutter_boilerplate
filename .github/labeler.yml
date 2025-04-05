@@ -1,0 +1,12 @@
+# .github/labeler.yml
+frontend:
+- src/frontend/**/*
+- src/ui/**/*
+
+backend:
+- src/backend/**/*
+- src/api/**/*
+
+documentation:
+- docs/**/*
+- '**/*.md'

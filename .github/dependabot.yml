@@ -8,10 +8,10 @@ updates:
   - package-ecosystem: "pub" # See documentation for possible values
     directory: "/" # Location of package manifests
     schedule:
-      interval: "weekly"
+      interval: "daily"
     open-pull-requests-limit: 5
     labels:
-      - "dependency"
+      - "dependencies"
     commit-message:
       prefix: "chore"
       include: "scope"
@@ -23,11 +23,8 @@ updates:
       interval: "weekly"
     commit-message:
       prefix: "chore(deps-actions)"
-      include: "scope"
     labels:
-      - "dependencies"
       - "github-actions"
-      - "ci"
 
   # --- Optional: Uncomment and adjust if you have native Android dependencies ---
   - package-ecosystem: "gradle"
@@ -36,9 +33,7 @@ updates:
       interval: "weekly"
     commit-message:
       prefix: "chore(deps-android)"
-      include: "scope"
     labels:
       - "dependencies"
       - "android"
-      - "native"
 
