@@ -14,16 +14,54 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  # UI and icons
   cupertino_icons: ^1.0.5
+  
+  # State management
   flutter_bloc: ^9.1.0
   equatable: ^2.0.5
+  
+  # Dependency injection
   get_it: ^8.0.3
+  
+  # Navigation
+  go_router: ^14.8.1
+  
+  # Network and API
+  dio: ^5.4.1
+  logger: ^2.1.0
+  connectivity_plus: ^6.0.1
+  shared_preferences: ^2.2.3
+  
+  # JSON handling and serialization
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.9.0
+  
+  # Local database
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  path_provider: ^2.1.2
+  
+  # Environment configuration
+  flutter_dotenv: ^5.1.0
+  package_info_plus: ^8.3.0
+  
+  # Analytics and monitoring
+  firebase_core: ^2.26.0
+  firebase_analytics: ^10.8.10
+  firebase_crashlytics: ^3.4.19
+  sentry_flutter: ^8.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   flutter_lints: ^5.0.0
+  
+  # Code generation
+  build_runner: ^2.4.9
+  freezed: ^2.4.7
+  json_serializable: ^6.8.0
+  hive_generator: ^2.0.1
 
 flutter:
   uses-material-design: true
@@ -34,3 +72,8 @@ flutter:
   assets:
     # Add assets from the images directory to the application.
     - assets/images/
+    # Environment files
+    - .env
+    - .env.dev
+    - .env.staging
+    - .env.prod

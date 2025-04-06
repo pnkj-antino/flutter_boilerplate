@@ -1,5 +1,9 @@
 {
   "@@locale": "en",
+  "appTitle": "Flutter Boilerplate",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
   "helloWorld": "Hello World!",
   "@helloWorld": {
     "description": "A simple greeting"
@@ -14,13 +18,57 @@
       }
     }
   },
-   "remainingEmails": "{count,plural, =0{No emails left} =1{1 email left} other{{count} emails left}}",
-   "@remainingEmails": {
-     "description": "Indicates how many emails are remaining.",
-     "placeholders": {
-       "count": {
-         "type": "int"
-       }
-     }
-   }
+  "remainingEmails": "{count,plural, =0{No emails left} =1{1 email left} other{{count} emails left}}",
+  "@remainingEmails": {
+    "description": "Indicates how many emails are remaining.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "settingsTitle": "Settings",
+  "@settingsTitle": {
+    "description": "The title of the settings screen"
+  },
+  "themeSettingsTitle": "Theme Settings",
+  "@themeSettingsTitle": {
+    "description": "The title of the theme settings section"
+  },
+  "systemTheme": "System Theme",
+  "@systemTheme": {
+    "description": "Label for system theme option"
+  },
+  "lightTheme": "Light Theme",
+  "@lightTheme": {
+    "description": "Label for light theme option"
+  },
+  "darkTheme": "Dark Theme",
+  "@darkTheme": {
+    "description": "Label for dark theme option"
+  },
+  "detailsTitle": "Details",
+  "@detailsTitle": {
+    "description": "The title of the details screen"
+  },
+  "itemDetails": "Item Details",
+  "@itemDetails": {
+    "description": "Label for item details section"
+  },
+  "goBack": "Go Back",
+  "@goBack": {
+    "description": "Label for go back button"
+  },
+  "notFound": "Not Found",
+  "@notFound": {
+    "description": "Message shown when a page is not found"
+  },
+  "errorOccurred": "An error occurred",
+  "@errorOccurred": {
+    "description": "Message shown when an error occurs"
+  },
+  "goHome": "Go Home",
+  "@goHome": {
+    "description": "Label for go home button"
+  }
 }
