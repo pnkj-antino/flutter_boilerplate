@@ -34,7 +34,7 @@ dependencies:
   shared_preferences: ^2.2.3
   
   # JSON handling and serialization
-  freezed_annotation: ^2.4.1
+  freezed_annotation: ^3.0.0
   json_annotation: ^4.9.0
   
   # Local database
@@ -59,7 +59,7 @@ dev_dependencies:
   
   # Code generation
   build_runner: ^2.4.9
-  freezed: ^2.4.7
+  freezed: ^3.0.0-0.0.dev
   json_serializable: ^6.8.0
   hive_generator: ^2.0.1
 
