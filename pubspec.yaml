@@ -30,7 +30,7 @@ dependencies:
   # Network and API
   dio: ^5.4.1
   logger: ^2.1.0
-  connectivity_plus: ^6.0.1
+  connectivity_plus: ^6.1.3
   shared_preferences: ^2.5.3
   
   # JSON handling and serialization
