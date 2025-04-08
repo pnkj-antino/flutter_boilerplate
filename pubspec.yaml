@@ -31,7 +31,7 @@ dependencies:
   dio: ^5.4.1
   logger: ^2.1.0
   connectivity_plus: ^6.0.1
-  shared_preferences: ^2.2.3
+  shared_preferences: ^2.5.3
   
   # JSON handling and serialization
   freezed_annotation: ^3.0.0
