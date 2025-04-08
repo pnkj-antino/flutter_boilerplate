@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 class AuthForm extends StatefulWidget {
   /// Whether this form is for login (true) or registration (false)
   final bool isLogin;
-  
+
   /// Whether the form is loading
   final bool isLoading;
-  
+
   /// Callback for form submission
   /// Parameters: email, password, name (null for login)
   final void Function(String email, String password, String? name) onSubmit;
@@ -29,9 +29,9 @@ class _AuthFormState extends State<AuthForm> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _nameController = TextEditingController();
-  
+
   bool _obscurePassword = true;
-  
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -39,20 +39,20 @@ class _AuthFormState extends State<AuthForm> {
     _nameController.dispose();
     super.dispose();
   }
-  
+
   void _submit() {
     // Validate form
     if (_formKey.currentState?.validate() != true) {
       return;
     }
-    
+
     final email = _emailController.text.trim();
     final password = _passwordController.text.trim();
     final name = widget.isLogin ? null : _nameController.text.trim();
-    
+
     widget.onSubmit(email, password, name);
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -82,7 +82,7 @@ class _AuthFormState extends State<AuthForm> {
             ),
             const SizedBox(height: 16),
           ],
-          
+
           // Email field
           TextFormField(
             controller: _emailController,
@@ -106,7 +106,7 @@ class _AuthFormState extends State<AuthForm> {
             },
           ),
           const SizedBox(height: 16),
-          
+
           // Password field
           TextFormField(
             controller: _passwordController,
@@ -138,7 +138,7 @@ class _AuthFormState extends State<AuthForm> {
             },
           ),
           const SizedBox(height: 24),
-          
+
           // Submit button
           SizedBox(
             width: double.infinity,

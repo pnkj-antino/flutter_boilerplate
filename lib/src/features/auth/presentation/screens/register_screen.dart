@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter_boilerplate/src/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:flutter_boilerplate/src/features/auth/presentation/cubit/auth_state.dart';
 import 'package:flutter_boilerplate/src/features/auth/presentation/widgets/auth_form.dart';
+import 'package:go_router/go_router.dart';
 
 /// Registration screen
 class RegisterScreen extends StatelessWidget {
@@ -26,7 +26,7 @@ class RegisterScreen extends StatelessWidget {
             // Navigate to home when authenticated
             context.go('/');
           }
-          
+
           // Show error snackbar if needed
           if (state.error != null) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -35,7 +35,7 @@ class RegisterScreen extends StatelessWidget {
                 backgroundColor: Colors.red,
               ),
             );
-            
+
             // Clear the error
             context.read<AuthCubit>().clearError();
           }
@@ -73,17 +73,15 @@ class RegisterScreen extends StatelessWidget {
                       isLoading: state.isLoading,
                       onSubmit: (email, password, name) {
                         context.read<AuthCubit>().register(
-                          name: name!,
-                          email: email,
-                          password: password,
-                        );
+                              name: name!,
+                              email: email,
+                              password: password,
+                            );
                       },
                     ),
                     const SizedBox(height: 16),
                     TextButton(
-                      onPressed: state.isLoading
-                          ? null
-                          : () => context.pop(),
+                      onPressed: state.isLoading ? null : () => context.pop(),
                       child: const Text('Already have an account? Sign in'),
                     ),
                   ],
