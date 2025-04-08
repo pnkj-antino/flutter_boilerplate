@@ -58,7 +58,7 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   
   # Code generation
-  build_runner: ^2.4.9
+  build_runner: ^2.4.15
   freezed: ^3.0.0-0.0.dev
   json_serializable: ^6.8.0
   hive_generator: ^2.0.1
