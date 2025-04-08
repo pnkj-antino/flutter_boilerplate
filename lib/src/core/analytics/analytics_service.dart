@@ -6,31 +6,31 @@ import 'package:flutter_boilerplate/src/core/env/env_config.dart';
 enum AnalyticsEventType {
   /// Screen view event
   screenView,
-  
+
   /// Button click event
   buttonClick,
-  
+
   /// User login event
   login,
-  
+
   /// User registration event
   registration,
-  
+
   /// App startup event
   appStart,
-  
+
   /// Error event
   error,
-  
+
   /// Feature usage event
   featureUsage,
-  
+
   /// Search event
   search,
-  
+
   /// Content view event
   contentView,
-  
+
   /// Custom event
   custom,
 }
@@ -39,7 +39,7 @@ enum AnalyticsEventType {
 class AnalyticsService {
   final FirebaseAnalytics _analytics;
   final EnvConfig _envConfig;
-  
+
   /// Whether analytics tracking is enabled
   bool get isEnabled => _envConfig.analyticsEnabled && !kDebugMode;
 
@@ -53,10 +53,10 @@ class AnalyticsService {
   /// Track a screen view
   Future<void> trackScreenView(String screenName) async {
     if (!isEnabled) return;
-    
+
     try {
       await _analytics.logScreenView(screenName: screenName);
-      
+
       if (kDebugMode) {
         print('Analytics - Screen View: $screenName');
       }
@@ -66,11 +66,12 @@ class AnalyticsService {
       }
     }
   }
-  
+
   /// Track a button click
-  Future<void> trackButtonClick(String buttonName, {Map<String, dynamic>? parameters}) async {
+  Future<void> trackButtonClick(String buttonName,
+      {Map<String, dynamic>? parameters}) async {
     if (!isEnabled) return;
-    
+
     try {
       await _analytics.logEvent(
         name: 'button_click',
@@ -79,7 +80,7 @@ class AnalyticsService {
           ...?parameters,
         },
       );
-      
+
       if (kDebugMode) {
         print('Analytics - Button Click: $buttonName');
       }
@@ -93,10 +94,10 @@ class AnalyticsService {
   /// Track a login event
   Future<void> trackLogin(String method) async {
     if (!isEnabled) return;
-    
+
     try {
       await _analytics.logLogin(loginMethod: method);
-      
+
       if (kDebugMode) {
         print('Analytics - Login: $method');
       }
@@ -106,14 +107,14 @@ class AnalyticsService {
       }
     }
   }
-  
+
   /// Track a sign up event
   Future<void> trackSignUp(String method) async {
     if (!isEnabled) return;
-    
+
     try {
       await _analytics.logSignUp(signUpMethod: method);
-      
+
       if (kDebugMode) {
         print('Analytics - Sign Up: $method');
       }
@@ -123,14 +124,14 @@ class AnalyticsService {
       }
     }
   }
-  
+
   /// Track a search event
   Future<void> trackSearch(String searchTerm) async {
     if (!isEnabled) return;
-    
+
     try {
       await _analytics.logSearch(searchTerm: searchTerm);
-      
+
       if (kDebugMode) {
         print('Analytics - Search: $searchTerm');
       }
@@ -144,7 +145,7 @@ class AnalyticsService {
   /// Track an error event
   Future<void> trackError(String errorType, String errorMessage) async {
     if (!isEnabled) return;
-    
+
     try {
       await _analytics.logEvent(
         name: 'error',
@@ -153,7 +154,7 @@ class AnalyticsService {
           'error_message': errorMessage,
         },
       );
-      
+
       if (kDebugMode) {
         print('Analytics - Error: $errorType - $errorMessage');
       }
@@ -163,11 +164,12 @@ class AnalyticsService {
       }
     }
   }
-  
+
   /// Track a feature usage event
-  Future<void> trackFeatureUsage(String featureName, {Map<String, dynamic>? parameters}) async {
+  Future<void> trackFeatureUsage(String featureName,
+      {Map<String, dynamic>? parameters}) async {
     if (!isEnabled) return;
-    
+
     try {
       await _analytics.logEvent(
         name: 'feature_usage',
@@ -176,7 +178,7 @@ class AnalyticsService {
           ...?parameters,
         },
       );
-      
+
       if (kDebugMode) {
         print('Analytics - Feature Usage: $featureName');
       }
@@ -188,15 +190,16 @@ class AnalyticsService {
   }
 
   /// Track a custom event
-  Future<void> trackCustomEvent(String eventName, {Map<String, dynamic>? parameters}) async {
+  Future<void> trackCustomEvent(String eventName,
+      {Map<String, Object>? parameters}) async {
     if (!isEnabled) return;
-    
+
     try {
       await _analytics.logEvent(
         name: eventName,
         parameters: parameters,
       );
-      
+
       if (kDebugMode) {
         print('Analytics - Custom Event: $eventName');
       }
@@ -206,7 +209,7 @@ class AnalyticsService {
       }
     }
   }
-  
+
   /// Set user properties
   Future<void> setUserProperties({
     String? userId,
@@ -214,16 +217,16 @@ class AnalyticsService {
     Map<String, dynamic>? customProperties,
   }) async {
     if (!isEnabled) return;
-    
+
     try {
       if (userId != null) {
         await _analytics.setUserId(id: userId);
       }
-      
+
       if (userRole != null) {
         await _analytics.setUserProperty(name: 'user_role', value: userRole);
       }
-      
+
       if (customProperties != null) {
         for (final entry in customProperties.entries) {
           await _analytics.setUserProperty(
@@ -232,7 +235,7 @@ class AnalyticsService {
           );
         }
       }
-      
+
       if (kDebugMode) {
         print('Analytics - User Properties set');
       }
