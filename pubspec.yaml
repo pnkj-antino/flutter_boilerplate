@@ -47,8 +47,8 @@ dependencies:
   package_info_plus: ^8.3.0
   
   # Analytics and monitoring
-  firebase_core: ^3.13.1
-  firebase_analytics: ^11.4.6
+  firebase_core: ^3.15.0
+  firebase_analytics: ^11.5.1
   firebase_crashlytics: ^4.3.7
   sentry_flutter: ^8.14.2
 
