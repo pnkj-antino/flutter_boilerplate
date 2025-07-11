@@ -48,6 +48,12 @@ class EnvConfig {
   /// Cache timeout in minutes
   late int cacheTimeoutMinutes;
 
+  /// Sentry DSN for error reporting
+  late String sentryDsn;
+
+  /// Sentry traces sample rate
+  late double sentryTracesSampleRate;
+
   /// Factory constructor to return the singleton instance
   factory EnvConfig() {
     return _instance;
@@ -84,6 +90,9 @@ class EnvConfig {
     _instance.packageName = packageInfo.packageName;
     _instance.cacheTimeoutMinutes =
         int.tryParse(dotenv.get('CACHE_TIMEOUT_MINUTES', fallback: '60')) ?? 60;
+    _instance.sentryDsn = dotenv.get('SENTRY_DSN', fallback: '');
+    _instance.sentryTracesSampleRate =
+        double.tryParse(dotenv.get('SENTRY_TRACES_SAMPLE_RATE', fallback: '0.1')) ?? 0.1;
 
     if (kDebugMode) {
       print('Environment: ${_instance.env}');
