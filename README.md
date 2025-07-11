@@ -47,7 +47,7 @@ lib/
 
 ### Prerequisites
 
-- Flutter SDK: 3.5.4 or higher
+- Flutter SDK: 3.8.1 or higher
 - Dart SDK: 3.0.0 or higher
 
 ### Installation
