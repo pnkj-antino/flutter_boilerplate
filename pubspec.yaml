@@ -34,7 +34,7 @@ dependencies:
   shared_preferences: ^2.5.3
   
   # JSON handling and serialization
-  freezed_annotation: ^3.0.0
+  freezed_annotation: ^3.1.0
   json_annotation: ^4.9.0
   
   # Local database
