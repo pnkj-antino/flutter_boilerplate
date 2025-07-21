@@ -48,7 +48,7 @@ dependencies:
   
   # Analytics and monitoring
   firebase_core: ^3.15.0
-  firebase_analytics: ^11.5.2
+  firebase_analytics: ^11.6.0
   firebase_crashlytics: ^4.3.8
   sentry_flutter: ^9.4.0
 
