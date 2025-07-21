@@ -29,7 +29,7 @@ dependencies:
   
   # Network and API
   dio: ^5.4.1
-  logger: ^2.6.0
+  logger: ^2.6.1
   connectivity_plus: ^6.1.4
   shared_preferences: ^2.5.3
   
