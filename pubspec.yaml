@@ -43,7 +43,7 @@ dependencies:
   path_provider: ^2.1.2
   
   # Environment configuration
-  flutter_dotenv: ^5.1.0
+  flutter_dotenv: ^6.0.0
   package_info_plus: ^8.3.0
   
   # Analytics and monitoring
