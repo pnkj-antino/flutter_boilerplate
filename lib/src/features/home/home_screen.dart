@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:flutter_boilerplate/src/localization/app_localizations.dart';
 import 'package:flutter_boilerplate/src/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:flutter_boilerplate/src/features/auth/presentation/cubit/auth_state.dart';
+import 'package:flutter_boilerplate/src/localization/app_localizations.dart';
+import 'package:go_router/go_router.dart';
 
 /// Home screen of the application
 class HomeScreen extends StatelessWidget {
@@ -12,11 +12,11 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    
+
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
         final userName = state.user?.name ?? 'User';
-        
+
         return Scaffold(
           appBar: AppBar(
             title: Text(l10n.appTitle),
@@ -79,7 +79,7 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
     );
-    
+
     if (confirmed == true && context.mounted) {
       context.read<AuthCubit>().logout();
     }

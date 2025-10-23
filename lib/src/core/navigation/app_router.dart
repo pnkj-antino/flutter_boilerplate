@@ -1,42 +1,40 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter_boilerplate/src/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:flutter_boilerplate/src/features/auth/presentation/screens/login_screen.dart';
 import 'package:flutter_boilerplate/src/features/auth/presentation/screens/register_screen.dart';
 import 'package:flutter_boilerplate/src/features/home/home_screen.dart';
 import 'package:flutter_boilerplate/src/settings/settings_controller.dart';
 import 'package:flutter_boilerplate/src/settings/settings_view.dart';
+import 'package:go_router/go_router.dart';
 
 /// Application router using GoRouter for navigation
 class AppRouter {
   final SettingsController settingsController;
   final AuthCubit authCubit;
 
-  AppRouter({
-    required this.settingsController,
-    required this.authCubit,
-  });
+  AppRouter({required this.settingsController, required this.authCubit});
 
   late final GoRouter router = GoRouter(
     debugLogDiagnostics: true,
     initialLocation: '/',
     redirect: (context, state) {
       final isAuthenticated = authCubit.state.isAuthenticated;
-      final isAuthRoute = state.matchedLocation == LoginScreen.routeName || 
-                          state.matchedLocation == RegisterScreen.routeName;
-      
+      final isAuthRoute =
+          state.matchedLocation == LoginScreen.routeName ||
+          state.matchedLocation == RegisterScreen.routeName;
+
       // If not authenticated and not on an auth route, redirect to login
       if (!isAuthenticated && !isAuthRoute) {
         return LoginScreen.routeName;
       }
-      
+
       // If authenticated and on an auth route, redirect to home
       if (isAuthenticated && isAuthRoute) {
         return '/';
       }
-      
+
       // No redirection needed
       return null;
     },
@@ -53,7 +51,7 @@ class AppRouter {
         name: 'register',
         builder: (context, state) => const RegisterScreen(),
       ),
-      
+
       // App routes
       GoRoute(
         path: '/',
@@ -63,9 +61,8 @@ class AppRouter {
           GoRoute(
             path: 'settings',
             name: 'settings',
-            builder: (context, state) => SettingsView(
-              controller: settingsController,
-            ),
+            builder: (context, state) =>
+                SettingsView(controller: settingsController),
           ),
           GoRoute(
             path: 'details/:id',
@@ -108,18 +105,12 @@ class ErrorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Error'),
-      ),
+      appBar: AppBar(title: const Text('Error')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
-              Icons.error_outline,
-              color: Colors.red,
-              size: 60,
-            ),
+            const Icon(Icons.error_outline, color: Colors.red, size: 60),
             const SizedBox(height: 16),
             Text(
               'Route not found',
@@ -146,17 +137,12 @@ class ErrorScreen extends StatelessWidget {
 class DetailScreen extends StatelessWidget {
   final String id;
 
-  const DetailScreen({
-    required this.id,
-    super.key,
-  });
+  const DetailScreen({required this.id, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Details'),
-      ),
+      appBar: AppBar(title: const Text('Details')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -166,10 +152,7 @@ class DetailScreen extends StatelessWidget {
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: 16),
-            Text(
-              'ID: $id',
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
+            Text('ID: $id', style: Theme.of(context).textTheme.bodyLarge),
             const SizedBox(height: 24),
             ElevatedButton(
               onPressed: () => context.pop(),

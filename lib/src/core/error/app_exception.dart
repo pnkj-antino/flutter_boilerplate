@@ -8,7 +8,7 @@ part 'app_exception.freezed.dart';
 class AppException with _$AppException {
   /// Private constructor for freezed
   const AppException._();
-  
+
   /// Network-related error
   const factory AppException.network({
     String? message,
@@ -24,10 +24,8 @@ class AppException with _$AppException {
   }) = ServerException;
 
   /// Unexpected error occurred
-  const factory AppException.unexpected({
-    String? message,
-    String? stackTrace,
-  }) = UnexpectedException;
+  const factory AppException.unexpected({String? message, String? stackTrace}) =
+      UnexpectedException;
 
   /// No internet connection
   const factory AppException.noInternet() = NoInternetException;
@@ -43,7 +41,7 @@ class AppException with _$AppException {
 
   /// Resource not found
   const factory AppException.notFound({String? resource}) = NotFoundException;
-  
+
   /// Validation error
   const factory AppException.validation({
     required String message,
@@ -51,9 +49,7 @@ class AppException with _$AppException {
   }) = ValidationException;
 
   /// Cache-related error
-  const factory AppException.cache({
-    required String message,
-  }) = CacheException;
+  const factory AppException.cache({required String message}) = CacheException;
 
   /// Convert DioException to AppException
   factory AppException.fromDioException(DioException exception) {
@@ -62,18 +58,18 @@ class AppException with _$AppException {
       case DioExceptionType.sendTimeout:
       case DioExceptionType.receiveTimeout:
         return const AppException.timeout();
-        
+
       case DioExceptionType.badCertificate:
       case DioExceptionType.connectionError:
         return AppException.network(
           message: exception.message,
           stackTrace: exception.stackTrace.toString(),
         );
-        
+
       case DioExceptionType.badResponse:
         final statusCode = exception.response?.statusCode;
         final data = exception.response?.data;
-        
+
         if (statusCode == 401) {
           return const AppException.unauthorized();
         } else if (statusCode == 403) {
@@ -94,17 +90,17 @@ class AppException with _$AppException {
               errors: _extractValidationErrors(data),
             );
           }
-          
+
           return AppException.server(
             message: _extractErrorMessage(data) ?? 'Unknown server error',
             statusCode: statusCode,
             stackTrace: exception.stackTrace.toString(),
           );
         }
-        
+
       case DioExceptionType.cancel:
         return const AppException.unexpected(message: 'Request was cancelled');
-        
+
       case DioExceptionType.unknown:
         if (exception.message?.contains('SocketException') ?? false) {
           return const AppException.noInternet();
@@ -135,7 +131,7 @@ class AppException with _$AppException {
   /// Extract error message from response data
   static String? _extractErrorMessage(dynamic data) {
     if (data == null) return null;
-    
+
     if (data is Map<String, dynamic>) {
       // Check common error message fields
       final possibleMessageFields = [
@@ -146,7 +142,7 @@ class AppException with _$AppException {
         'error_description',
         'errors',
       ];
-      
+
       for (final field in possibleMessageFields) {
         final value = data[field];
         if (value is String) return value;
@@ -162,7 +158,7 @@ class AppException with _$AppException {
         }
       }
     }
-    
+
     // Default fallback
     if (data is String) return data;
     return null;

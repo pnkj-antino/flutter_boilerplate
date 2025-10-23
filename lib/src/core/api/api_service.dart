@@ -19,7 +19,7 @@ class ApiService {
         queryParameters: queryParameters,
         options: options,
       );
-      
+
       return response.data;
     } catch (e) {
       rethrow;
@@ -40,7 +40,7 @@ class ApiService {
         queryParameters: queryParameters,
         options: options,
       );
-      
+
       return response.data;
     } catch (e) {
       rethrow;
@@ -61,7 +61,7 @@ class ApiService {
         queryParameters: queryParameters,
         options: options,
       );
-      
+
       return response.data;
     } catch (e) {
       rethrow;
@@ -82,7 +82,7 @@ class ApiService {
         queryParameters: queryParameters,
         options: options,
       );
-      
+
       return response.data;
     } catch (e) {
       rethrow;
@@ -103,7 +103,7 @@ class ApiService {
         queryParameters: queryParameters,
         options: options,
       );
-      
+
       return response.data;
     } catch (e) {
       rethrow;

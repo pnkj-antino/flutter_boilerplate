@@ -6,29 +6,25 @@ import 'package:flutter_boilerplate/src/core/models/user.dart';
 class AuthState extends Equatable {
   /// Is loading
   final bool isLoading;
-  
+
   /// Currently authenticated user
   final User? user;
-  
+
   /// Error if auth failed
   final AppException? error;
-  
+
   /// Is authenticated
   bool get isAuthenticated => user != null && !isLoading && error == null;
-  
+
   /// Is not authenticated
   bool get isUnauthenticated => user == null && !isLoading && error == null;
-  
+
   /// Constructor
-  const AuthState({
-    this.isLoading = false,
-    this.user,
-    this.error,
-  });
+  const AuthState({this.isLoading = false, this.user, this.error});
 
   /// Initial state
   factory AuthState.initial() => const AuthState();
-  
+
   /// Copy with new values
   AuthState copyWith({
     bool? isLoading,
@@ -43,7 +39,7 @@ class AuthState extends Equatable {
       error: clearError ? null : (error ?? this.error),
     );
   }
-  
+
   @override
   List<Object?> get props => [isLoading, user, error];
 }

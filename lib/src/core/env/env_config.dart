@@ -80,10 +80,12 @@ class EnvConfig {
     _instance.env = env;
     _instance.apiBaseUrl = apiBaseUrl;
     _instance.apiKey = dotenv.get('API_KEY', fallback: '');
-    _instance.analyticsEnabled =
-        _parseBoolean(dotenv.get('ANALYTICS_ENABLED', fallback: 'false'));
-    _instance.crashReportingEnabled =
-        _parseBoolean(dotenv.get('CRASH_REPORTING_ENABLED', fallback: 'false'));
+    _instance.analyticsEnabled = _parseBoolean(
+      dotenv.get('ANALYTICS_ENABLED', fallback: 'false'),
+    );
+    _instance.crashReportingEnabled = _parseBoolean(
+      dotenv.get('CRASH_REPORTING_ENABLED', fallback: 'false'),
+    );
     _instance.appVersion = packageInfo.version;
     _instance.buildNumber = packageInfo.buildNumber;
     _instance.isDebug = kDebugMode;
@@ -92,7 +94,10 @@ class EnvConfig {
         int.tryParse(dotenv.get('CACHE_TIMEOUT_MINUTES', fallback: '60')) ?? 60;
     _instance.sentryDsn = dotenv.get('SENTRY_DSN', fallback: '');
     _instance.sentryTracesSampleRate =
-        double.tryParse(dotenv.get('SENTRY_TRACES_SAMPLE_RATE', fallback: '0.1')) ?? 0.1;
+        double.tryParse(
+          dotenv.get('SENTRY_TRACES_SAMPLE_RATE', fallback: '0.1'),
+        ) ??
+        0.1;
 
     if (kDebugMode) {
       print('Environment: ${_instance.env}');

@@ -7,9 +7,9 @@ import 'package:flutter_boilerplate/src/core/utils/connectivity_service.dart';
 /// Base repository class that handles error management and connectivity checks
 abstract class BaseRepository {
   final ConnectivityService _connectivityService;
-  
+
   BaseRepository(this._connectivityService);
-  
+
   /// Execute a network request with proper error handling
   ///
   /// Wraps API calls in a standardized Result class with error handling
@@ -23,7 +23,7 @@ abstract class BaseRepository {
       if (!isConnected) {
         return const Result.failure(AppException.noInternet());
       }
-      
+
       // Execute the API call
       final response = await apiCall();
       return Result.success(response);
@@ -45,7 +45,7 @@ abstract class BaseRepository {
       );
     }
   }
-  
+
   /// Execute a database operation with proper error handling
   Future<Result<T>> safeDbCall<T>({
     required Future<T> Function() dbCall,

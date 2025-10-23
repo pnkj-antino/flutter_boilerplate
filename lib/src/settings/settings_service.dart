@@ -14,10 +14,10 @@ class SettingsService {
   Future<ThemeMode> themeMode() async {
     // Make sure SharedPrefs is initialized
     await SharedPrefs.init();
-    
+
     // Get the stored theme mode index, default to system (0)
     final themeModeIndex = SharedPrefs.getInt(SettingsKeys.themeMode) ?? 0;
-    
+
     // Convert the index to a ThemeMode
     return ThemeMode.values[themeModeIndex];
   }
@@ -26,7 +26,7 @@ class SettingsService {
   Future<void> updateThemeMode(ThemeMode theme) async {
     // Make sure SharedPrefs is initialized
     await SharedPrefs.init();
-    
+
     // Store the theme mode as an integer (index in the enum)
     await SharedPrefs.setInt(SettingsKeys.themeMode, theme.index);
   }

@@ -16,9 +16,7 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Create Account'),
-      ),
+      appBar: AppBar(title: const Text('Create Account')),
       body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           // Handle auth state changes
@@ -73,10 +71,10 @@ class RegisterScreen extends StatelessWidget {
                       isLoading: state.isLoading,
                       onSubmit: (email, password, name) {
                         context.read<AuthCubit>().register(
-                              name: name!,
-                              email: email,
-                              password: password,
-                            );
+                          name: name!,
+                          email: email,
+                          password: password,
+                        );
                       },
                     ),
                     const SizedBox(height: 16),

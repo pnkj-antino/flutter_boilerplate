@@ -20,9 +20,9 @@ class CrashReportingService {
     required FirebaseCrashlytics crashlytics,
     required EnvConfig envConfig,
     bool useSentry = true,
-  })  : _crashlytics = crashlytics,
-        _envConfig = envConfig,
-        _useSentry = useSentry;
+  }) : _crashlytics = crashlytics,
+       _envConfig = envConfig,
+       _useSentry = useSentry;
 
   /// Initialize crash reporting service
   Future<void> initialize() async {
@@ -51,17 +51,22 @@ class CrashReportingService {
     };
 
     // Handle errors from Isolates
-    Isolate.current.addErrorListener(RawReceivePort((pair) {
-      final List<dynamic> errorAndStacktrace = pair;
-      final error = errorAndStacktrace[0];
-      final stackTrace = StackTrace.fromString(errorAndStacktrace[1]);
-      _crashlytics.recordError(error, stackTrace, fatal: true);
-    }).sendPort);
+    Isolate.current.addErrorListener(
+      RawReceivePort((pair) {
+        final List<dynamic> errorAndStacktrace = pair;
+        final error = errorAndStacktrace[0];
+        final stackTrace = StackTrace.fromString(errorAndStacktrace[1]);
+        _crashlytics.recordError(error, stackTrace, fatal: true);
+      }).sendPort,
+    );
   }
 
   /// Set user information for crash reports
-  Future<void> setUserIdentifier(String userId,
-      {String? email, String? name}) async {
+  Future<void> setUserIdentifier(
+    String userId, {
+    String? email,
+    String? name,
+  }) async {
     if (!isEnabled) return;
 
     await _crashlytics.setUserIdentifier(userId);
@@ -112,10 +117,7 @@ class CrashReportingService {
 
     // Also send to Sentry if enabled
     if (_useSentry) {
-      await Sentry.captureException(
-        exception,
-        stackTrace: stackTrace,
-      );
+      await Sentry.captureException(exception, stackTrace: stackTrace);
     }
   }
 
@@ -132,8 +134,11 @@ class CrashReportingService {
   }
 
   /// Record a fatal crash
-  Future<void> recordFatalCrash(dynamic exception, StackTrace stackTrace,
-      {String? reason}) async {
+  Future<void> recordFatalCrash(
+    dynamic exception,
+    StackTrace stackTrace, {
+    String? reason,
+  }) async {
     if (!isEnabled) {
       if (kDebugMode) {
         print('Fatal Error: $exception');

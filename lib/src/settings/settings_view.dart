@@ -18,7 +18,7 @@ class SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    
+
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n.settingsTitle),
@@ -59,7 +59,7 @@ class SettingsView extends StatelessWidget {
                 DropdownMenuItem(
                   value: ThemeMode.dark,
                   child: Text(l10n.darkTheme),
-                )
+                ),
               ],
             ),
           ],

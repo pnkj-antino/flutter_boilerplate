@@ -21,7 +21,7 @@ class DioClient {
         },
       ),
     );
-    
+
     _setupInterceptors();
   }
 
@@ -36,13 +36,17 @@ class DioClient {
         },
         onResponse: (response, handler) {
           if (kDebugMode) {
-            _logger.d('RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}');
+            _logger.d(
+              'RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}',
+            );
           }
           return handler.next(response);
         },
         onError: (DioException e, handler) {
           if (kDebugMode) {
-            _logger.e('ERROR[${e.response?.statusCode}] => PATH: ${e.requestOptions.path}');
+            _logger.e(
+              'ERROR[${e.response?.statusCode}] => PATH: ${e.requestOptions.path}',
+            );
           }
           return handler.next(e);
         },

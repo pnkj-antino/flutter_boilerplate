@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter_boilerplate/src/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:flutter_boilerplate/src/features/auth/presentation/cubit/auth_state.dart';
 import 'package:flutter_boilerplate/src/features/auth/presentation/widgets/auth_form.dart';
+import 'package:go_router/go_router.dart';
 
 /// Login screen
 class LoginScreen extends StatelessWidget {
@@ -16,9 +16,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login'),
-      ),
+      appBar: AppBar(title: const Text('Login')),
       body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           // Handle auth state changes
@@ -26,7 +24,7 @@ class LoginScreen extends StatelessWidget {
             // Navigate to home when authenticated
             context.go('/');
           }
-          
+
           // Show error snackbar if needed
           if (state.error != null) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -35,7 +33,7 @@ class LoginScreen extends StatelessWidget {
                 backgroundColor: Colors.red,
               ),
             );
-            
+
             // Clear the error
             context.read<AuthCubit>().clearError();
           }

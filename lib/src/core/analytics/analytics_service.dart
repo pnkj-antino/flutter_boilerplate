@@ -47,8 +47,8 @@ class AnalyticsService {
   AnalyticsService({
     required FirebaseAnalytics analytics,
     required EnvConfig envConfig,
-  })  : _analytics = analytics,
-        _envConfig = envConfig;
+  }) : _analytics = analytics,
+       _envConfig = envConfig;
 
   /// Track a screen view
   Future<void> trackScreenView(String screenName) async {
@@ -68,17 +68,16 @@ class AnalyticsService {
   }
 
   /// Track a button click
-  Future<void> trackButtonClick(String buttonName,
-      {Map<String, dynamic>? parameters}) async {
+  Future<void> trackButtonClick(
+    String buttonName, {
+    Map<String, dynamic>? parameters,
+  }) async {
     if (!isEnabled) return;
 
     try {
       await _analytics.logEvent(
         name: 'button_click',
-        parameters: {
-          'button_name': buttonName,
-          ...?parameters,
-        },
+        parameters: {'button_name': buttonName, ...?parameters},
       );
 
       if (kDebugMode) {
@@ -149,10 +148,7 @@ class AnalyticsService {
     try {
       await _analytics.logEvent(
         name: 'error',
-        parameters: {
-          'error_type': errorType,
-          'error_message': errorMessage,
-        },
+        parameters: {'error_type': errorType, 'error_message': errorMessage},
       );
 
       if (kDebugMode) {
@@ -166,17 +162,16 @@ class AnalyticsService {
   }
 
   /// Track a feature usage event
-  Future<void> trackFeatureUsage(String featureName,
-      {Map<String, dynamic>? parameters}) async {
+  Future<void> trackFeatureUsage(
+    String featureName, {
+    Map<String, dynamic>? parameters,
+  }) async {
     if (!isEnabled) return;
 
     try {
       await _analytics.logEvent(
         name: 'feature_usage',
-        parameters: {
-          'feature_name': featureName,
-          ...?parameters,
-        },
+        parameters: {'feature_name': featureName, ...?parameters},
       );
 
       if (kDebugMode) {
@@ -190,15 +185,14 @@ class AnalyticsService {
   }
 
   /// Track a custom event
-  Future<void> trackCustomEvent(String eventName,
-      {Map<String, Object>? parameters}) async {
+  Future<void> trackCustomEvent(
+    String eventName, {
+    Map<String, Object>? parameters,
+  }) async {
     if (!isEnabled) return;
 
     try {
-      await _analytics.logEvent(
-        name: eventName,
-        parameters: parameters,
-      );
+      await _analytics.logEvent(name: eventName, parameters: parameters);
 
       if (kDebugMode) {
         print('Analytics - Custom Event: $eventName');

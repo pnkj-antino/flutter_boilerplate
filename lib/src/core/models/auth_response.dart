@@ -1,5 +1,5 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_boilerplate/src/core/models/user.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'auth_response.freezed.dart';
 part 'auth_response.g.dart';
@@ -13,6 +13,6 @@ class AuthResponse with _$AuthResponse {
     required DateTime expiresAt,
   }) = _AuthResponse;
 
-  factory AuthResponse.fromJson(Map<String, dynamic> json) => 
+  factory AuthResponse.fromJson(Map<String, dynamic> json) =>
       _$AuthResponseFromJson(json);
 }

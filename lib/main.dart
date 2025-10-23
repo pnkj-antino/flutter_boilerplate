@@ -18,19 +18,19 @@ void main() async {
   await runZonedWithSentry(() async {
     // Ensure Flutter binding is initialized
     WidgetsFlutterBinding.ensureInitialized();
-    
+
     // Set preferred orientations
     await SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    
+
     // Initialize Firebase
     await Firebase.initializeApp();
-    
+
     // Initialize Hive
     await Hive.initFlutter();
-    
+
     // Initialize service locator
     await setupServiceLocator();
   });
@@ -50,16 +50,12 @@ Future<void> runZonedWithSentry(Future<void> Function() appRunner) async {
       // Run app initialization in app runner
       appRunner: appRunner,
     );
-    
+
     // Run the app and pass in the SettingsController from service locator.
     runApp(
       MultiBlocProvider(
-        providers: [
-          BlocProvider<AuthCubit>.value(value: getIt<AuthCubit>()),
-        ],
-        child: MyApp(
-          settingsController: getIt(),
-        ),
+        providers: [BlocProvider<AuthCubit>.value(value: getIt<AuthCubit>())],
+        child: MyApp(settingsController: getIt()),
       ),
     );
   } catch (error, stackTrace) {
@@ -76,9 +72,7 @@ Future<void> runZonedWithSentry(Future<void> Function() appRunner) async {
     runApp(
       MaterialApp(
         home: Scaffold(
-          body: Center(
-            child: Text('Failed to initialize the app: $error'),
-          ),
+          body: Center(child: Text('Failed to initialize the app: $error')),
         ),
       ),
     );

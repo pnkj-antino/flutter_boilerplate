@@ -7,10 +7,10 @@ import 'package:flutter_boilerplate/src/core/error/crash_reporting_service.dart'
 class ErrorBoundaryWidget extends StatefulWidget {
   /// The child widget that might throw errors
   final Widget child;
-  
+
   /// Fallback widget to show when an error occurs
   final Widget? fallbackWidget;
-  
+
   /// Whether to allow retrying the child widget
   final bool allowRetry;
 
@@ -42,9 +42,8 @@ class _ErrorBoundaryWidgetState extends State<ErrorBoundaryWidget> {
     if (_hasError) {
       // Report the error to the crash reporting service
       try {
-        final crashReportingService = 
-            context.read<CrashReportingService>();
-        
+        final crashReportingService = context.read<CrashReportingService>();
+
         crashReportingService.logError(
           _error,
           _stackTrace ?? StackTrace.current,
@@ -60,65 +59,63 @@ class _ErrorBoundaryWidgetState extends State<ErrorBoundaryWidget> {
           print('Could not report error: $e');
         }
       }
-      
+
       // Use custom fallback or default error widget
-      return widget.fallbackWidget ?? Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Material(
-          color: Colors.transparent,
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.grey[100],
-              borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: Colors.grey),
-            ),
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(
-                  Icons.error_outline,
-                  color: Colors.red,
-                  size: 48,
+      return widget.fallbackWidget ??
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Material(
+              color: Colors.transparent,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey[100],
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.grey),
                 ),
-                const SizedBox(height: 16),
-                const Text(
-                  'Something went wrong',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                if (kDebugMode) ...[
-                  const SizedBox(height: 8),
-                  Text(
-                    _error.toString(),
-                    style: const TextStyle(
-                      fontSize: 14,
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.error_outline,
                       color: Colors.red,
+                      size: 48,
                     ),
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-                if (widget.allowRetry) ...[
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        _hasError = false;
-                      });
-                    },
-                    child: const Text('Retry'),
-                  ),
-                ],
-              ],
+                    const SizedBox(height: 16),
+                    const Text(
+                      'Something went wrong',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    if (kDebugMode) ...[
+                      const SizedBox(height: 8),
+                      Text(
+                        _error.toString(),
+                        style: const TextStyle(fontSize: 14, color: Colors.red),
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                    if (widget.allowRetry) ...[
+                      const SizedBox(height: 16),
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            _hasError = false;
+                          });
+                        },
+                        child: const Text('Retry'),
+                      ),
+                    ],
+                  ],
+                ),
+              ),
             ),
-          ),
-        ),
-      );
+          );
     }
 
     // If no error, render the child widget inside an error catcher
@@ -141,16 +138,12 @@ class _ErrorBoundaryWidgetState extends State<ErrorBoundaryWidget> {
 class ErrorCatcher extends StatefulWidget {
   /// The child widget that might throw errors
   final Widget child;
-  
+
   /// Callback when an error occurs
   final void Function(dynamic error, StackTrace stackTrace) onError;
 
   /// Constructor
-  const ErrorCatcher({
-    super.key,
-    required this.child,
-    required this.onError,
-  });
+  const ErrorCatcher({super.key, required this.child, required this.onError});
 
   @override
   State<ErrorCatcher> createState() => _ErrorCatcherState();
@@ -165,7 +158,7 @@ class _ErrorCatcherState extends State<ErrorCatcher> {
   @override
   void initState() {
     super.initState();
-    
+
     // Register the global error handler
     final originalOnError = FlutterError.onError;
     FlutterError.onError = (FlutterErrorDetails details) {

@@ -32,10 +32,7 @@ class AuthRepository extends CachedRepository {
       apiCall: () async {
         final response = await _apiService.post(
           ApiEndpoints.login,
-          data: {
-            'email': email,
-            'password': password,
-          },
+          data: {'email': email, 'password': password},
         );
 
         final authResponse = AuthResponse.fromJson(response);
@@ -59,11 +56,7 @@ class AuthRepository extends CachedRepository {
       apiCall: () async {
         final response = await _apiService.post(
           ApiEndpoints.register,
-          data: {
-            'name': name,
-            'email': email,
-            'password': password,
-          },
+          data: {'name': name, 'email': email, 'password': password},
         );
 
         final authResponse = AuthResponse.fromJson(response);
@@ -103,9 +96,7 @@ class AuthRepository extends CachedRepository {
       apiCall: () async {
         final response = await _apiService.post(
           ApiEndpoints.refreshToken,
-          data: {
-            'refresh_token': refreshToken,
-          },
+          data: {'refresh_token': refreshToken},
         );
 
         final authResponse = AuthResponse.fromJson(response);
@@ -132,8 +123,9 @@ class AuthRepository extends CachedRepository {
     final userData = SharedPrefs.getString(_userKey);
     if (userData != null) {
       try {
-        final user =
-            User.fromJson(jsonDecode(userData) as Map<String, dynamic>);
+        final user = User.fromJson(
+          jsonDecode(userData) as Map<String, dynamic>,
+        );
         return Result.success(user);
       } catch (e) {
         // If parsing fails, continue to cached version
@@ -171,6 +163,8 @@ class AuthRepository extends CachedRepository {
     await SharedPrefs.setString(_tokenKey, authResponse.accessToken);
     await SharedPrefs.setString(_refreshTokenKey, authResponse.refreshToken);
     await SharedPrefs.setString(
-        _userKey, jsonEncode(authResponse.user.toJson()));
+      _userKey,
+      jsonEncode(authResponse.user.toJson()),
+    );
   }
 }
