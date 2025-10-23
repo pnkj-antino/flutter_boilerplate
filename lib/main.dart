@@ -9,6 +9,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'src/app.dart';
 import 'src/core/di/service_locator.dart';
+import 'src/core/env/env_config.dart';
 import 'src/core/error/crash_reporting_service.dart';
 import 'src/features/auth/presentation/cubit/auth_cubit.dart';
 
@@ -40,9 +41,11 @@ Future<void> runZonedWithSentry(Future<void> Function() appRunner) async {
   try {
     await SentryFlutter.init(
       (options) {
-        options.dsn = 'https://examplePublicKey@o0.ingest.sentry.io/0';
-        options.tracesSampleRate = 1.0;
+        final envConfig = EnvConfig();
+        options.dsn = envConfig.sentryDsn;
+        options.tracesSampleRate = envConfig.sentryTracesSampleRate;
         options.enableAutoSessionTracking = true;
+        options.environment = envConfig.env.name;
       },
       // Run app initialization in app runner
       appRunner: appRunner,
